@@ -1,0 +1,19 @@
+CC = gcc #compiler 
+CFLAGS = -c -O3 -Wall #o3 -> compiler option
+LDFLAGS = # linker optiop
+all: hello myprog
+hello: hello.o #$<는 전제조건,즉 파일명을 기호로 대체하여 적는거임 
+	$(CC) $< -o $@ # $<: condition, $@: target name
+myprog: myprog.o  #$<는 전제조건, 즉 파일임($< = myprog.c 
+	$(CC) $< -o $@ # $<: condition, $@: target name
+hello.o: hello.c
+	$(CC) $< -o $@ # $<: condition, $@: target name
+myprog.o: myprog.c
+	$(CC) $< -o $@ # $<: condition, $@: target name
+clean: 
+	rm -rf *.0 hello myprog
+install: 
+	sudo cp hello myprog /use/bin
+uninstall:
+	sudo rm -rf /usr/bin/hello
+	sudo rm -rf /usr/bin/hello
